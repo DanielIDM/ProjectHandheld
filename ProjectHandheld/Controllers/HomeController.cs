@@ -13,7 +13,7 @@ namespace ProjectHandheld.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View("../Handheld/Index");
         }
 
     }

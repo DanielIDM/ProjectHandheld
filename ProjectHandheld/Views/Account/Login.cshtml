@@ -1,0 +1,105 @@
+﻿@using LISMVC.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" name="viewport">
+    <title>@ViewBag.Title &mdash; Logistic Information System</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/ionicons.min.css">
+    <link rel="stylesheet" href="~/Content/fontawesome-all.min.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+</head>
+<body>
+    <div id="app">
+        <section class="section">
+            <div class="container mt-1">
+                <div class="row">
+                    <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+                        <div class="login-brand">
+                            <img src="~/Images/logo_indomaret.png" />
+                            Logistic Information System
+                            <h6>@ViewBag.KodeDC - @ViewBag.NamaDC</h6>
+                        </div>
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h4>@ViewBag.Title</h4>
+                            </div>
+                            <div class="card-body">
+                                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "needs-validation", nonvalidate = "" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    if ((string)TempData["ChangePassword"] == "Success")
+                                    {
+                                        <div class="alert alert-success" role="alert">
+                                            Password berhasil diperbarui, silahkan login kembali dengan password baru Anda.
+                                        </div>
+                                    }
+                                    <hr />
+                                    if(!Html.ViewData.ModelState.IsValid)
+{
+                                        // show error
+                                        <div class="alert alert-danger" role="alert">
+                                            <span class="ls-none">
+                                                @Html.ValidationSummary(true, "", new { @class = "text-light", style = "margin-left: -40px;" })
+                                            </span>
+                                        </div>
+                                    }
+                                    
+                                    <div class="form-group">
+                                        <label for="email">Username</label>
+                                        <input id="username" type="text" class="form-control" name="username" tabindex="1" required autofocus>
+                                        <div class="invalid-feedback">
+                                            Please fill in your username
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password" class="d-block">
+                                            Password
+                                        </label>
+                                        <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                                        <div class="invalid-feedback">
+                                            please fill in your password
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-block" tabindex="4">
+                                            Login
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="simple-footer">
+                            &copy; @DateTime.Now.Year - Pt. Indomarco Prismatama - SD 3
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/popper.js"></script>
+    <script src="~/Scripts/tooltip.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.nicescroll.min.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/scroll-up-bar.min.js"></script>
+    <script src="~/Scripts/sa-functions.js"></script>
+
+    <script src="~/Scripts/scripts.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+</body>
+</html>
+
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
+
